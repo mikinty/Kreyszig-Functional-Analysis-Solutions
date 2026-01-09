@@ -1,0 +1,73 @@
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{graphicx}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage[standard]{ntheorem}  % Loads amssymb, provides proof environment
+\usepackage{physics}  % Provides \ip{}{} for inner products, \norm{}, \abs{}, etc.
+\usepackage{tikz}
+\usepackage{titling}
+\usepackage{xspace}
+\usepackage{soul}
+
+\title{Introductory Functional Analysis with Applications\\Solutions}
+\author{Michael You}
+\date{}
+
+% ===== Custom Math Operators =====
+\DeclareMathOperator{\Ker}{Ker}
+\DeclareMathOperator{\Ran}{Ran}
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\Span}{span}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\diam}{diam}
+\DeclareMathOperator{\supp}{supp}
+
+% ===== Paired Delimiters =====
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\paren}{(}{)}
+\DeclarePairedDelimiter{\bracken}{[}{]}
+\DeclarePairedDelimiter{\bracen}{\{}{\}}
+\DeclarePairedDelimiter{\inner}{\langle}{\rangle}
+\newcommand{\pa}[1]{\paren*{#1}}
+\newcommand{\pbra}[1]{\bracken*{#1}}
+\newcommand{\pbrac}[1]{\bracen*{#1}}
+% Note: \ip{}{} is provided by physics package
+
+% ===== Common Spaces =====
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\K}{\mathbb{K}}  % Generic field (R or C)
+\newcommand{\F}{\mathbb{F}}  % Field
+
+% ===== Functional Analysis Notation =====
+\newcommand{\Lp}[1]{L^{#1}}
+\newcommand{\lp}[1]{\ell^{#1}}
+\newcommand{\Bop}{\mathcal{B}}  % Bounded operators
+\newcommand{\Kop}{\mathcal{K}}  % Compact operators
+\newcommand{\Hilb}{\mathcal{H}} % Hilbert space
+\newcommand{\weakto}{\rightharpoonup}
+\newcommand{\weakstarto}{\overset{*}{\rightharpoonup}}
+
+% ===== Exercise Theorem Environment =====
+\theoremstyle{break}
+\theorembodyfont{\upshape}
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{tip}{Tip}[section]
+
+% ===== Environment Shortcuts =====
+\newcommand{\bx}[1]{\begin{exercise} #1 \end{exercise}}
+\newcommand{\ea}[1]{\begin{enumerate}[label=(\alph*)] #1 \end{enumerate}}
+
+% ===== Text Shortcuts =====
+\newcommand{\AFSOC}{\text{AFSOC}\xspace}
+\newcommand{\TODO}{\hl{\textbf{TODO}}\xspace}
+
+% ===== Pathing =====
+\newcommand{\subDir}[1]{chapters/chapter\currChapter/chapter\currChapter-#1}

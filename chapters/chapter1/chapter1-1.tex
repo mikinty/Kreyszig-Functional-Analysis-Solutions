@@ -1,0 +1,261 @@
+\section{Metric Space}
+
+We spend this chapter introducing a metric space and building some intuition around it.
+From the definition below, if we can show they are true, then we have a metric space.
+
+\begin{definition}
+  A \textbf{metric space} is a pair $(X, d)$ where $X$ is a set, and $d$ is a \textit{metric on $X$} (or \textit{distance function on $X$}), that is, a function defined on $X \times X$ such that for all $x, y, z \in X$ we have:
+  \begin{enumerate}
+    \item $d$ is real-valued, finite and nonnegative
+    \item $d(x, y) = 0$ if and only if $x = y$
+    \item $d(x, y) = d(y, x)$ (Symmetry)
+    \item $d(x, y) \leq d(x, z) + d(z, y)$ (\textbf{Triangle inequality})
+  \end{enumerate}
+  \label{def:metric_space}
+\end{definition}
+
+\bx{
+  \label{chap1-1:ex1}
+  Let's show that $\mathbb{R}$ is a metric space. Since the author didn't specify, I assume they mean the standard metric $d(x, y) = |x - y|$.
+
+  In this case, we can show
+  \begin{enumerate}
+    \item $d(x, y) = |x - y| \geq 0$, by definition of absolute value. It is finite, since $x, y$ are finite, and you can bound $|x - y|$ by $|x| + |y|$ which is also finite. And it is $\in \mathbb{R}$ by definition of absolute value.
+    \item If $x=y$ then $d(x, y) = |x - y| = 0$. If $d(x, y) = 0$, then $|x - y| = 0$, which means $x - y = 0$, or $x = y$.
+    \item $d(x, y) = |x - y| = |y - x| = d(y, x)$.
+    \item $d(x, y) = |x - y| = |x - z + z - y| \leq |x - z| + |z - y| = d(x, z) + d(z, y)$
+  \end{enumerate}
+}
+
+\bx{
+  Same as \ref{chap1-1:ex1}, but for $d(x, y) = (x - y)^2$.
+
+  Counterexample for Triangle Inequality: Let $x = 0, y = 2, z = 1$.
+  Then, we have
+  \begin{align*}
+    d(x, y) &= (2-0)^2 = 4\\
+    d(x, z) + d(z, y) &= (0-1)^2 + (1-2)^2 = 1 + 1 = 2 \\
+    4 &\not\leq 2
+  \end{align*}
+
+  So it is \textbf{not a metric}.
+}
+
+\bx{
+  Same as \ref{chap1-1:ex1}, but for $d(x, y) = \sqrt{|x - y|}$.
+
+  We can show
+  \begin{enumerate}
+    \item $d(x, y) = \sqrt{|x - y|} \geq 0$, by definition of absolute value and square root. It is finite, since $x, y$ are finite, and you can bound $\sqrt{|x - y|}$ by $\sqrt{|x| + |y|}$ which is also finite. And it is $\in \mathbb{R}$ by definition of absolute value and square root.
+    \item If $x=y$ then $d(x, y) = \sqrt{|x - y|} = 0$. If $d(x, y) = 0$, then $\sqrt{|x - y|} = 0$, which means $|x - y| = 0$, or $x - y = 0$, or $x = y$.
+    \item $d(x, y) = \sqrt{|x - y|} = \sqrt{|y - x|} = d(y, x)$.
+    \item $d(x, y) = \sqrt{|x - y|} = \sqrt{|x - z + z - y|} \leq \sqrt{|x - z|} + \sqrt{|z - y|} = d(x, z) + d(z, y)$\\
+      The inequality step comes from the fact that $\sqrt{a + b} \leq \sqrt{a} + \sqrt{b}$ for nonnegative $a, b$, because
+      \begin{align*}
+        (\sqrt{a} + \sqrt{b})^2 &\,?\, (\sqrt{a+b})^2\\
+        a + b + 2\sqrt{ab} &\geq a + b
+      \end{align*}
+  \end{enumerate}
+
+  So it is a metric.
+}
+
+\bx{
+  We need to find all metrics on a set $X$ consisting of two points.
+
+  Let $X = \{a, b\}$ with $a \neq b$. Suppose we have the following metric:
+
+  \[
+    d(x,y) =
+    \begin{cases}
+      0 & x = y \\
+      c & x \neq y , c > 0
+    \end{cases}
+  \]
+
+  We can verify 1, 2, 3, from \ref{def:metric_space} very easily. The main caveat, we needed $c>0$ for 2, for $d(x, y) = 0$ iff $x = y$.
+  Then, for 4 (Triangle Inequality), we can check all possible cases:
+  \begin{enumerate}
+    \item If $x = y$, then $d(x, y) = 0 \leq d(x, z) + d(z, y)$
+    \item if $x \neq y$, then we have two more cases
+      \begin{enumerate}
+        \item if $x = z$, then $z\neq y$ and we have $d(x, z) + d(z, y) = c \geq c = d(x, y)$
+        \item if $x \neq z$, then we have $z = y$ and similarly $d(x, z) + d(z, y) = c \geq c = d(x, y)$
+      \end{enumerate}
+  \end{enumerate}
+
+  If $X$ consists of one point, then the only metric is the trivial one where $d(x, x) = 0$.
+  This is because, if we have any other metric, then $d(x, x) > 0$ which violates property 2.
+}
+
+\bx{
+  Suppose $d$ is a metric on $X$.
+
+  \begin{enumerate}
+    \item Suppose we have $kd$. Then this is still a metric if $k > 0$.
+      We can verify the four properties:
+      \begin{enumerate}
+        \item $kd(x, y) \geq 0$ since $d(x, y) \geq 0$ and $k > 0$. It is finite since $d$ is finite and $k$ is a finite scalar.
+        \item $kd(x, y) = 0$ iff $d(x, y) = 0$ iff $x = y$.
+        \item $kd(x, y) = k d(y, x)$, we can just scale property 3
+        \item $kd(x, y) \leq kd(x, z) + kd(z, y)$ we can just scale property 4 the triangle inequality.
+      \end{enumerate}
+    \item Suppose we have $d + k$. Then this is only a metric for $k=0$. If $k\neq 0$ then property 2 is immediately dissatisfied, since $d(x, x) + k = k \neq 0$.
+  \end{enumerate}
+}
+
+\bx{
+  We want to show the sequnce space $l^\infty$ is a metric space.
+
+  \begin{enumerate}
+    \item $d(x, y) = \sup_{n \in \mathbb{N}} |x_n - y_n| \geq 0$ since absolute value is nonnegative. It is finite since $x, y \in l^\infty$ means they are bounded sequences by $c_x \in \mathbb{R}$, so their difference is also bounded. And it is $\in \mathbb{R}$ since absolute value produces real numbers.
+    \item If $x = y$, then $d(x, y) = \sup |x_n - y_n| = 0$. If $d(x, y) = 0$, then $\sup |x_n - y_n| = 0$, which means for all $n$, $|x_n - y_n| = 0$, or $x_n = y_n$ for all $n$, so $x = y$.
+    \item $d(x, y) = \sup |x_n - y_n| = \sup |y_n - x_n| = d(y, x)$.
+    \item $d(x, y) = \sup |x_n - y_n| = \sup |x_n - z_n + z_n - y_n| \leq \sup |x_n - z_n| + \sup |z_n - y_n| = d(x, z) + d(z, y)$.
+  \end{enumerate}
+}
+
+\bx{
+  Supposed $A$ is the subset of $l^\infty$ where each sequence is composed of 0 or 1.
+
+  The induced metric then behaves like this:
+
+  \[
+    d(x, y) =
+    \begin{cases}
+      0 & x = y \\
+      1 & x \neq y
+    \end{cases}
+  \]
+}
+
+\bx{
+  We have $X$ as the set of all real-valued functions, and are defined and continuous on a closed interval $J = \bracken{a, b}$.
+  We now choose the metric
+  \begin{equation}
+    d(x, y) = \int_a^b |x(t) - y(t)| \dd{t}
+  \end{equation}
+
+  Let's check this is a metric
+  \begin{enumerate}
+    \item $d(x, y) = \int_a^b |x(t) - y(t)| \dd{t} \geq 0$ since absolute value is nonnegative. It is finite since $x, y$ are continuous on a closed interval, so they are bounded, and the integral of a bounded function over a finite interval is finite. And it is $\in \mathbb{R}$ since the integral of a real-valued function is real.
+    \item If $x = y$, then $d(x, y) = \int_a^b |x(t) - y(t)| \dd{t} = \int_a^b |0| \dd{t} = 0$. If $d(x, y) = 0$, then $\int_a^b |x(t) - y(t)| \dd{t} = 0$, which implies $|x(t) - y(t)| = 0$ for all $t \in [a,b]$, so $x(t) = y(t)$ for all $t \in [a,b]$.
+    \item $d(x, y) = \int_a^b |x(t) - y(t)| \dd{t} = \int_a^b |y(t) - x(t)| \dd{t} = d(y, x)$.
+    \item $d(x, y) = \int_a^b |x(t) - y(t)| \dd{t} = \int_a^b |x(t) - z(t) + z(t) - y(t)| \dd{t} \leq \int_a^b |x(t) - z(t)| \dd{t} + \int_a^b |z(t) - y(t)| \dd{t} = d(x, z) + d(z, y)$.
+  \end{enumerate}
+}
+
+\bx{
+  We want to show that the discrete metric for $X$ is a metric, this is
+  \begin{equation}
+    d(x, x) = 0, d(x, y) = 1 \text{ for } x \neq y
+  \end{equation}
+
+  \begin{enumerate}
+    \item $d(x, y)$ is either 0 or 1, so it is nonnegative, finite, and real-valued.
+    \item By definition, $d(x, y) = 0$ iff $x = y$.
+    \item By definition, $d(x, y) = d(y, x)$.
+    \item For the triangle inequality, we have two cases:
+      \begin{enumerate}
+        \item If $x = y$, then $d(x, y) = 0 \leq d(x, z) + d(z, y)$
+        \item If $x \neq y$, then we have two more cases
+          \begin{enumerate}
+            \item if $x = z$, then $z\neq y$ and we have $d(x, z) + d(z, y) = 1 \geq 1 = d(x, y)$
+            \item if $x \neq z$, then we have $z = y$ and similarly $d(x, z) + d(z, y) = 1 \geq 1 = d(x, y)$
+          \end{enumerate}
+      \end{enumerate}
+  \end{enumerate}
+}
+
+\bx{
+  \textbf{(Hamming distance)} Let $X$ be all set of ordered triples of 0s and 1s.
+
+  We immediately see that $X$ has $2^3 = 8$ elements.
+
+  Now, $d(x, y) = \text{number of positions where } x \text{ and } y \text{ differ}$.
+
+  \begin{enumerate}
+    \item $d(x, y) = 0, 1, 2, 3$ so it is nonnegative, finite, and real-valued.
+    \item If $x = y$, then they differ in 0 positions, so $d(x, y) = 0$. If $d(x, y) = 0$, then they differ in 0 positions, so $x$ and $y$ must be the same in all positions, so $x = y$.
+    \item The number of positions where $x$ and $y$ differ is the same as the number of positions where $y$ and $x$ differ, so $d(x, y) = d(y, x)$.
+    \item For the triangle inequality, we can prove this my induction using the discrete metric space, as the base case.
+      Then, suppose we have $n$-tuples, and we add one more position to each tuple to make it an $(n+1)$-tuple.
+      There are two cases:
+      \begin{enumerate}
+        \item If the new position is the same for all three tuples, then the number of differing positions is unchanged, so the triangle inequality holds by the inductive hypothesis.
+        \item If the new position is different for at least one of the tuples, then the left-hand side of the triangle inequality increases by at most 1, and the right-hand side also increases by at least 1, because in $z$, its new position must be different from at least $x$ or $y$.
+      \end{enumerate}
+  \end{enumerate}
+}
+
+\bx{
+  We want to prove the generalized triangle inequality:
+  \begin{equation}
+    d(x_1, x_n) \leq d(x_1, x_2) + d(x_2, x_3) + \dots + d(x_{n-1}, x_n)
+  \end{equation}
+  We can do this by induction.
+
+  Base case: $n=2$ is just the regular triangle inequality.
+  Inductive step: Suppose it is true for $n=k$.
+  Then, for $n = k+1$, we have
+  \begin{align*}
+    d(x_1, x_{k+1}) &\leq d(x_1, x_k) + d(x_k, x_{k+1}) \tag{Triangle Inequality} \\
+    &\leq d(x_1, x_2) + d(x_2, x_3) + \dots + d(x_{k-1}, x_k) + d(x_k, x_{k+1}) \tag{Inductive Hypothesis}
+  \end{align*}
+  Thus, by induction, the generalized triangle inequality holds for all $n \geq 2$.
+}
+
+\bx{
+  We can see that
+  \begin{align*}
+    \abs{d(x, y) - d(z, w)} &\leq d(x, z) + d(y, w) \\
+    d(x, y) - d(z, w) &\leq d(x, z) + d(y, w) \tag{Case 1, we'll do the other case next}\\
+    d(x, y) &\leq d(x, z) + d(y, w) + d(z, w) \\
+    d(x, y) &\leq d(x, z) + d(w, y) + d(z, w) \tag{Symmetry}\\
+    d(x, y) &\leq d(x, z) + d(z, w) + d(w, y) \tag{Triangle Inequality}
+  \end{align*}
+
+  We need to do the other case as well:
+  \begin{align*}
+    d(z, w) - d(x, y) &\leq d(x, z) + d(y, w) \\
+    d(z, w) &\leq d(x, z) + d(y, w) + d(x, y) \\
+    d(z, w) &\leq d(z, x) + d(x, y) + d(y, w) \tag{Symmetry}\\
+    d(z, w) &\leq d(z, x) + d(x, y) + d(y, w) \tag{Triangle Inequality}
+  \end{align*}
+}
+
+\bx{
+  \begin{align*}
+    \abs{d(x, z) - d(y, z)} &\leq d(x, y) \\
+    d(x, z) - d(y, z) &\leq d(x, y) \tag{Case 1, we'll do the other case next}\\
+    d(x, z) &\leq d(x, y) + d(y, z) \tag{Triangle Inequality}\\
+  \end{align*}
+
+  Let's do the other case:
+  \begin{align*}
+    d(y, z) - d(x, z) &\leq d(x, y) \\
+    d(y, z) &\leq d(x, y) + d(x, z) \\
+    d(y, z) &\leq d(y, x) + d(x, z) \tag{Symmetry}\\
+    d(y, z) &\leq d(y, x) + d(x, z) \tag{Triangle Inequality}
+  \end{align*}
+}
+
+\bx{
+  We want to show that properties 2-4 in the \ref{def:metric_space} definition imply that the metric must be nonnegative.
+
+  AFSOC that there exists some $x, y \in X$ such that $d(x, y) < 0$.
+  Then, by property 4, we have
+  \begin{equation*}
+    d(x, x) \leq d(x, y) + d(y, x)
+  \end{equation*}
+  By property 3, we have $d(y, x) = d(x, y)$, so
+  \begin{equation*}
+    d(x, x) \leq 2d(x, y)
+  \end{equation*}
+  But by property 2, we have $d(x, x) = 0$, so
+  \begin{equation*}
+    0 \leq 2d(x, y)
+  \end{equation*}
+  However, we assumed $d(x, y) < 0$, so $2d(x, y) < 0$, which is a contradiction.
+  Therefore, our assumption is false, and we conclude that for all $x, y \in X$, $d(x, y) \geq 0$.
+}
