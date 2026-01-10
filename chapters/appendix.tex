@@ -1,0 +1,44 @@
+\appendix
+\chapter{Extras}
+\section{Important Inequalities}
+
+\begin{theorem}[Triangle Inequality]
+  For any metric space $(X, d)$ and points $x, y, z \in X$:
+  \[
+    d(x, z) \leq d(x, y) + d(y, z)
+  \]
+  For real or complex numbers:
+  \[
+    \abs{a + b} \leq \abs{a} + \abs{b}
+  \]
+\end{theorem}
+
+\begin{theorem}[H\"older's Inequality]
+  Let $p, q > 1$ be conjugate exponents. For sequences $(\xi_j), (\eta_j) \in \lp{p}$ and $\lp{q}$ respectively:
+  \[
+    \sum_{j=1}^{\infty} \abs{\xi_j \eta_j}
+    \leq
+    \pa{\sum_{j=1}^{\infty} \abs{\xi_j}^p}^{1/p}
+    \pa{\sum_{j=1}^{\infty} \abs{\eta_j}^q}^{1/q}
+  \]
+  For functions $f \in \Lp{p}$ and $g \in \Lp{q}$:
+  \[
+    \int \abs{fg} \leq \norm{f}_p \norm{g}_q
+  \]
+\end{theorem}
+
+\begin{theorem}[Minkowski's Inequality]
+  Let $p \geq 1$. For sequences $(\xi_j), (\eta_j) \in \lp{p}$:
+  \[
+    \pa{\sum_{j=1}^{\infty} \abs{\xi_j + \eta_j}^p}^{1/p}
+    \leq
+    \pa{\sum_{j=1}^{\infty} \abs{\xi_j}^p}^{1/p}
+    +
+    \pa{\sum_{j=1}^{\infty} \abs{\eta_j}^p}^{1/p}
+  \]
+  For functions $f, g \in \Lp{p}$:
+  \[
+    \norm{f + g}_p \leq \norm{f}_p + \norm{g}_p
+  \]
+  This is the triangle inequality for $\lp{p}$ and $\Lp{p}$ norms.
+\end{theorem}

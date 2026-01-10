@@ -3,9 +3,9 @@
 \usepackage{fancyhdr}
 \usepackage{float}
 \usepackage{graphicx}
-\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
 \usepackage{mathtools}
-\usepackage[standard]{ntheorem}  % Loads amssymb, provides proof environment
+\usepackage[amsmath, standard, thmmarks]{ntheorem}  % amsmath option for equation compatibility
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
 \usepackage{physics}  % Provides \ip{}{} for inner products, \norm{}, \abs{}, etc.
 \usepackage{tikz}
 \usepackage{titling}
@@ -62,8 +62,12 @@
 \newtheorem{tip}{Tip}[section]
 
 % ===== Environment Shortcuts =====
-\newcommand{\bx}[1]{\begin{exercise} #1 \end{exercise}}
-\newcommand{\ea}[1]{\begin{enumerate}[label=(\alph*)] #1 \end{enumerate}}
+\newcommand{\bx}[1]{
+  \begin{exercise} #1
+\end{exercise}}
+\newcommand{\ea}[1]{
+  \begin{enumerate}[label=(\alph*)] #1
+\end{enumerate}}
 
 % ===== Text Shortcuts =====
 \newcommand{\AFSOC}{\text{AFSOC}\xspace}
