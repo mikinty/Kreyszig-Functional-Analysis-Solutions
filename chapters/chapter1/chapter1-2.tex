@@ -291,3 +291,265 @@ We now want to prove that $l^p$ is a metric space.
   \end{align*}
   This completes the proof that $l^p$ is a metric space.
 \end{proof}
+
+\bx{
+  if we have $\mu_j$ such that $\sum \mu_j$ converges instead of $1/2^j$, then we just need to show
+  \begin{equation*}
+    d(x, y) = \sum_{j=1}^\infty \mu_j \frac{|\xi_j - \eta_j|}{1 + |\xi_j - \eta_j|}
+  \end{equation*}
+  is a metric. The properties 1-3 are easy, we just need to show convergence. But this is easy since $    \frac{|\xi_j - \eta_j|}{1 + |\xi_j - \eta_j|} \leq 1$, so we have
+  \begin{equation*}
+    d(x, y) \leq \sum_{j=1}^\infty \mu_j,
+  \end{equation*}
+  which converges by assumption.
+}
+
+\bx{
+  Suppose we have $\alpha, \beta > 0$. Then from \eqref{eq:youngs_inequality}, we have
+  \begin{equation*}
+    \alpha\beta \leq \frac{\alpha^p}{p} + \frac{\beta^q}{q}.
+  \end{equation*}
+  If we plug in $p = q = 2$, we have
+  \begin{align*}
+    \alpha\beta &\leq \frac{\alpha^2}{2} + \frac{\beta^2}{2} \\
+    \frac{\alpha\beta}{2} &\leq \frac{\alpha^2 + \beta^2}{4} \\
+    \alpha\beta &\leq \frac{\alpha^2 + 2\alpha\beta + \beta^2}{4} \\
+    \sqrt{\alpha\beta} &\leq \frac{\alpha + \beta}{2}.
+  \end{align*}
+}
+
+\bx{
+  Let's start with the Cauchy-Schwarz inequality for sums:
+  \begin{equation*}
+    \sum_{j=1}^{n} \abs{\xi_j \eta_j}
+    \leq
+    \sqrt{\sum_{k=1}^{n} \abs{\xi_k}^2}
+    \sqrt{\sum_{m=1}^{n} \abs{\eta_m}^2}
+  \end{equation*}
+  Now, choose
+  \begin{equation}
+    \eta_j =
+    \begin{cases}
+      1 & j = 1, 2, \dots, n\\
+      0 & \text{otherwise}
+    \end{cases}
+  \end{equation}
+  Then, if we square both sides of the inequality, we get
+  \begin{equation*}
+    \pa{\sum_{j=1}^{n} \abs{\xi_j}}^2
+    \leq
+    n
+    \sum_{k=1}^{n} \abs{\xi_k}^2.
+  \end{equation*}
+}
+
+\bx{
+  Consider the sequence $\xi_n = \frac{1}{\log(n+1)}$.
+
+  \textbf{Converges to 0:} Since $\log(n+1) \to \infty$ as $n \to \infty$, we have $\xi_n \to 0$.
+
+  \textbf{Not in any $l^{p}$:} For any $p \geq 1$, we show that
+  \[
+    \sum_{n=1}^{\infty} \abs{\xi_n}^p = \sum_{n=1}^{\infty} \frac{1}{(\log(n+1))^p} = \infty.
+  \]
+  Since $\log(n+1)$ grows slower than any positive power of $n$, for large $n$ we have
+  \[
+    \frac{1}{(\log(n+1))^p} > \frac{1}{n}
+  \]
+  and the harmonic series $\sum 1/n$ diverges. By comparison, $\sum \frac{1}{(\log(n+1))^p}$ diverges for all $p \geq 1$.
+
+  Therefore $(\xi_n) = \left(\frac{1}{\log(n+1)}\right)$ converges to 0 but is not in any $l{p}$ space.
+}
+
+\bx{
+  Consider the sequence $\xi_n = \frac{1}{n}$.
+
+  \textbf{In $l^{p}$ for $p > 1$:}
+  \[
+    \sum_{n=1}^{\infty} \abs{\xi_n}^p = \sum_{n=1}^{\infty} \frac{1}{n^p} < \infty
+  \]
+  since the $p$-series converges for $p > 1$.
+
+  \textbf{Not in $l^{1}$:}
+  \[
+    \sum_{n=1}^{\infty} \abs{\xi_n} = \sum_{n=1}^{\infty} \frac{1}{n} = \infty
+  \]
+  since the harmonic series diverges.
+}
+
+\bx{
+  AFSOC $A \subset B$ and $\delta(A) > \delta(B)$.
+
+  Then, $\exists x, y \in A$ such that $d(x, y) > d(x', y')$ for all $x', y' \in B$.
+  But this is a contradition, since $A \subset B$, so all $x, y \in A$ are also in $B$.
+  Therefore, we must have $\delta(A) \leq \delta(B)$.
+}
+
+\bx{
+  If $\delta(A) = 0$, then $\forall x, y \in A$, we have $d(x, y) = 0$. By property 2 of metric spaces, this implies $x = y$, so $A$ contains a single point.
+
+  Suppose $A$ contains a single point, then $\forall x, y \in A$, we have $x = y$, so $d(x, y) = 0$. Thus, $\delta(A) = 0$.
+}
+
+\bx{
+  To explain $D$ in plain English, it is the minimum distance of two points coming from two sets $A, B$.
+  Now, the question is, does $D$ define a metric on the power set of $X$?
+
+  We see that, property 2 is violated, because as long as $A$ and $B$ share a common point, we have $D(A, B) = 0$, but $A$ and $B$ could be different sets.
+}
+
+\bx{
+  The $\emptyset$ in the text looks like $\phi$ (phi). Anyways, if $A\cap B \neq \emptyset$, then $\exists x \in A \cap B$.
+  This means that $\exists x \in A, \in B$, so $d(x, x) = 0$, so $D(A, B) = 0$.
+
+  Now the converse, if $D(A, B) = 0$, then $\inf\{d(x, y) : x \in A, y \in B\} = 0$.
+  Suppose $A \cap B = \emptyset$, then $d(x, y) > 0$.
+  But we can choose $\epsilon = d(x, y)/2$, which leads to a contradiction.
+  Thus, we must have $A \cap B \neq \emptyset$
+}
+
+\bx{
+  For any $x, y \in X$, $b \in B$, we have from the triangle inequality that
+  \begin{align*}
+    d(x, b) &\leq d(x, y) + d(y, b)
+  \end{align*}
+  Taking the infimum over $b \in B$ on both sides:
+  \begin{align*}
+    \inf_{b \in B} d(x, b) &\leq \inf_{b \in B} \pbra{d(x, y) + d(y, b)}
+  \end{align*}
+  Since $d(x, y)$ does not depend on $b$, we can pull it out of the infimum:
+  \begin{align*}
+    D(x, B) &\leq d(x, y) + \inf_{b \in B} d(y, b) = d(x, y) + D(y, B)
+  \end{align*}
+  Therefore $D(x, B) - D(y, B) \leq d(x, y)$.
+
+  Now, applying the same argument but starting with $d(y, b) \leq d(y, x) + d(x, b)$:
+  \begin{align*}
+    D(y, B) &\leq d(y, x) + D(x, B) = d(x, y) + D(x, B)
+  \end{align*}
+  Therefore $D(y, B) - D(x, B) \leq d(x, y)$.
+
+  Combining both inequalities:
+  \begin{equation*}
+    \abs{D(x, B) - D(y, B)} \leq d(x, y)
+  \end{equation*}
+}
+
+\bx{
+  We want to show that
+  \begin{equation}
+    \tilde{d}(x, y) = \frac{d(x, y)}{1 + d(x, y)}
+  \end{equation}
+  is still a metric.
+
+  Let's walk through the four properties:
+  \begin{enumerate}
+    \item Since $d(x, y) \geq 0$, we have $\tilde{d}(x, y) \geq 0$. It is real valued because $d$ is, and it's finite because $d$ is finite, and $\tilde{d}(x, y)$ is bounded by $(0, 1)$.
+    \item If $\tilde{d}(x, y) = 0$, then $d(x, y) = 0$, which implies $x = y$. Conversely, if $x = y$, then $d(x, y) = 0$, so $\tilde{d}(x, y) = 0$.
+    \item $\tilde{d}(x, y) = \frac{d(x, y)}{1 + d(x, y)} = \frac{d(y, x)}{1 + d(y, x)} = \tilde{d}(y, x)$.
+    \item For the triangle inequality, we can show
+      \begin{align*}
+        \tilde{d}(x, z) &= \frac{d(x, z)}{1 + d(x, z)} \\
+        &\leq \frac{
+          d(x, y) + d(y, z)
+        }{
+          1 + d(x, y) + d(y, z)
+        } \tag{By triangle inequality}\\
+        &\leq \frac{
+          d(x, y)
+        }{
+          1 + d(x, y) + d(y, z)
+        }
+        + \frac{
+          d(y, z)
+        }{
+          1 + d(x, y) + d(y, z)
+        } \\
+        &\leq \frac{
+          d(x, y)
+        }{
+          1 + d(x, y)
+        }
+        + \frac{
+          d(y, z)
+        }{
+          1 + d(y, z)
+        } \tag{Since $d(x, y), d(y, z) \geq 0$, this makes the denom smaller, thus the fraction bigger}\\
+        &\leq \tilde{d}(x, y) + \tilde{d}(y, z)
+      \end{align*}
+  \end{enumerate}
+}
+
+\bx{
+  Since $A, B$ are bounded sets, we know $\exists p_A, p_B$ such that $\forall x \in A, y \in B$, $\exists M_A, M_B \in \mathbb{R}$ such that
+  \begin{equation*}
+    d(x, p_A) \leq M_A, \quad d(y, p_B) \leq M_B.
+  \end{equation*}
+
+  Let's choose $p_A$ to be our anchor point. Then, for any $p \in A \cup B$, we have two cases
+  \begin{enumerate}
+    \item $p \in A$, then $d(p, p_A) \leq M_A$ by definition.
+    \item $p \in B$, then we can do:
+      \begin{align*}
+        d(p, p_A) &\leq d(p, p_B) + d(p_B, p_A) \tag{Triangle inequality}\\
+        &\leq M_B + d(p_B, p_A) \tag{Since $p \in B$}\\
+        &\leq M_B + K
+      \end{align*}
+      where $K = d(p_B, p_A)$ is a constant, and this is true because $d$ is a metric and is finite and real-valued, and $p_B, p_A \in X$ (the overall metric space).
+  \end{enumerate}
+  Therefore, we can bound $A \cup B$ by $\max(M_A, M_B + K)$, so $A \cup B$ is bounded.
+}
+
+\bx{
+  We have the metric for the $X = X_1 \times X_2$ space defined as
+  \begin{equation*}
+    d(x, y) = d_1(x_1, y_1) + d_2(x_2, y_2).
+  \end{equation*}
+  We want to show that this is a metric.
+  \begin{enumerate}
+    \item Real, $\geq 0$, finite, follows from $d_1, d_2$ are both real-valued and non-negative and finite.
+    \item $d(x, y) = 0$ implies $d_1(x_1, y_1) + d_2(x_2, y_2) = 0$. Since both $d_1, d_2 \geq 0$, we must have $d_1(x_1, y_1) = 0$ and $d_2(x_2, y_2) = 0$, which implies $x_1 = y_1$ and $x_2 = y_2$, so $x = y$. Conversely, if $x = y$, then $d(x, y) = d_1(x_1, y_1) + d_2(x_2, y_2) = 0$.
+    \item Symmetry follows from the symmetry of $d_1, d_2$:
+      \begin{align*}
+        d(x, y) &= d_1(x_1, y_1) + d_2(x_2, y_2) \\
+        &= d_1(y_1, x_1) + d_2(y_2, x_2) \\
+        &= d(y, x).
+      \end{align*}
+    \item Triangle inequality:
+      \begin{align*}
+        d(x, z) &= d_1(x_1, z_1) + d_2(x_2, z_2) \\
+        &\leq d_1(x_1, y_1) + d_1(y_1, z_1) + d_2(x_2, y_2) + d_2(y_2, z_2) \tag{Triangle inequality for $d_1, d_2$}\\
+        &= d(x, y) + d(y, z).
+      \end{align*}
+  \end{enumerate}
+}
+
+\bx{
+  We want to show the same as the previous exercise, except for the metric defined as
+  \begin{equation*}
+    d(x, y) = \sqrt{d_1(x_1, y_1)^2 + d_2(x_2, y_2)^2}.
+  \end{equation*}
+  The first three properties are straightforward from the properties of $d_1, d_2$.
+  For the triangle inequality, we can use Minkowski's inequality:
+  \begin{align*}
+    d(x, z) &= \sqrt{d_1(x_1, z_1)^2 + d_2(x_2, z_2)^2} \\
+    &\leq \sqrt{\pa{d_1(x_1, y_1) + d_1(y_1, z_1)}^2 + \pa{d_2(x_2, y_2) + d_2(y_2, z_2)}^2} \tag{Triangle inequality for $d_1, d_2$}\\
+    &\leq \sqrt{d_1(x_1, y_1)^2 + d_2(x_2, y_2)^2} + \sqrt{d_1(y_1, z_1)^2 + d_2(y_2, z_2)^2} \tag{Minkowski's inequality}\\
+    &= d(x, y) + d(y, z).
+  \end{align*}
+}
+
+\bx{
+  We want to show the metric space defined by
+  \begin{equation*}
+    d(x, y) = \max\pa{d_1(x_1, y_1), d_2(x_2, y_2)}
+  \end{equation*}
+  is a metric. The first three properties are straightforward from the properties of $d_1, d_2$.
+  For the triangle inequality, we have
+  \begin{align*}
+    d(x, z) &= \max\pa{d_1(x_1, z_1), d_2(x_2, z_2)} \\
+    &\leq \max\pa{d_1(x_1, y_1) + d_1(y_1, z_1), d_2(x_2, y_2) + d_2(y_2, z_2)} \tag{Triangle inequality for $d_1, d_2$}\\
+    &\leq \max\pa{d_1(x_1, y_1), d_2(x_2, y_2)} + \max\pa{d_1(y_1, z_1), d_2(y_2, z_2)} \tag{Properties of max}\\
+    &= d(x, y) + d(y, z).
+  \end{align*}
+}
