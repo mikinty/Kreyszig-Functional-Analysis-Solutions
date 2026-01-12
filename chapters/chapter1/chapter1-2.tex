@@ -530,11 +530,26 @@ We now want to prove that $l^p$ is a metric space.
     d(x, y) = \sqrt{d_1(x_1, y_1)^2 + d_2(x_2, y_2)^2}.
   \end{equation*}
   The first three properties are straightforward from the properties of $d_1, d_2$.
-  For the triangle inequality, we can use Minkowski's inequality:
+  For the triangle inequality, we use Minkowski's inequality with $p = 2$ and a finite sum of 2 terms.
+  Recall Minkowski:
+  \[
+    \pa{\sum_{j=1}^{n} \abs{\xi_j + \eta_j}^p}^{1/p}
+    \leq
+    \pa{\sum_{j=1}^{n} \abs{\xi_j}^p}^{1/p}
+    +
+    \pa{\sum_{j=1}^{n} \abs{\eta_j}^p}^{1/p}
+  \]
+  We set $n = 2$, $p = 2$, and:
+  \begin{align*}
+    \xi_1 &= d_1(x_1, y_1), & \eta_1 &= d_1(y_1, z_1) \\
+    \xi_2 &= d_2(x_2, y_2), & \eta_2 &= d_2(y_2, z_2)
+  \end{align*}
+  Note that $\xi_j + \eta_j \leq d_j(x_j, z_j)$ by the triangle inequality for $d_1, d_2$.
+  Substituting into Minkowski (dropping absolute values since distances are non-negative):
   \begin{align*}
     d(x, z) &= \sqrt{d_1(x_1, z_1)^2 + d_2(x_2, z_2)^2} \\
-    &\leq \sqrt{\pa{d_1(x_1, y_1) + d_1(y_1, z_1)}^2 + \pa{d_2(x_2, y_2) + d_2(y_2, z_2)}^2} \tag{Triangle inequality for $d_1, d_2$}\\
-    &\leq \sqrt{d_1(x_1, y_1)^2 + d_2(x_2, y_2)^2} + \sqrt{d_1(y_1, z_1)^2 + d_2(y_2, z_2)^2} \tag{Minkowski's inequality}\\
+    &\leq \sqrt{\pa{\xi_1 + \eta_1}^2 + \pa{\xi_2 + \eta_2}^2} \tag{Triangle inequality for $d_1, d_2$}\\
+    &\leq \sqrt{\xi_1^2 + \xi_2^2} + \sqrt{\eta_1^2 + \eta_2^2} \tag{Minkowski with $p=2$, $n=2$}\\
     &= d(x, y) + d(y, z).
   \end{align*}
 }
